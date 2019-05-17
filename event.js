@@ -1,12 +1,15 @@
 // event.js
 
-var EventEmitter = require('events').EventEmitter;
-var event = new EventEmitter();
+var events = require('events');
+var emitter = new events.EventEmitter();
 
-event.on('some_event', function() {
-	console.log('some_event occured.');
+emitter.on('some_event', function(arg1, arg2) {
+	console.log('some_event occured.',arg1, arg2);
+});
+emitter.on('some_event', function(arg1, arg2) {
+	console.log('some_event occured.',arg1, arg2);
 });
 
 setTimeout(function() {
-	event.emit('some_event');
+	emitter.emit('some_event', 'byvoid', 1991);
 }, 1000)
